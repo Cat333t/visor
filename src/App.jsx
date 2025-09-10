@@ -18,7 +18,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <Router>
+            <Router basename="/visor">
                 <Header />
                 <Routes>
                     <Route path="/" element={<Home />} />
