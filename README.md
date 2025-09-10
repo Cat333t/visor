@@ -1,6 +1,8 @@
 # Visor 🌐
 
-This repository contains the **frontend (React-based dashboard)** for the [Visor](https://github.com/cat333t/visor) project — a lightweight website analytics tool.
+A lightweight website analytics tool built with React, Node.js, Express, and MongoDB. This tool is a more simple alternative to Google Analytics and other similar products.
+
+This repository contains the **frontend (React-based dashboard)** for the [Visor](https://cat333t.github.io/visor) project — a lightweight website analytics tool.
 
 👉 For the **backend (Node.js + Express + MongoDB)**, see the [Visor Server repository](https://github.com/cat333t/visor-server).
 
