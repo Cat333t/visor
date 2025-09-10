@@ -1,0 +1,18 @@
+.Home {
+    width: 100dvw;
+    min-height: 100dvh;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    height: 100dvh;
+}
+
+main h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
