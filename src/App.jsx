@@ -5,7 +5,6 @@ import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Docs from './pages/Docs';
 import Login from './pages/Login';
-import Api from './pages/Api';
 
 class App extends React.Component {
     constructor(props) {
