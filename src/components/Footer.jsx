@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, } from '@fortawesome/free-brands-svg-icons';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
@@ -17,9 +18,9 @@ export default function Footer() {
                 <div className="App-footer-info-section">
                     <h4>Links</h4>
                     <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/dashboard">Dashboard</a></li>
-                        <li><a href="/docs">Docs</a></li>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/dashboard">Dashboard</Link></li>
+                        <li><Link to="/docs">Docs</Link></li>
                     </ul>
                 </div>
                 
@@ -27,16 +28,16 @@ export default function Footer() {
                     <h4>Follow us</h4>
 
                     <ul>
-                        <li><a href="https://github.com/cat333t/visor">GitHub</a></li>
-                        <li><a href="https://cat333t.github.io/visor">Website</a></li>
+                        <li><a href="https://github.com/cat333t/visor" rel="noreferrer" target='_blank'>GitHub</a></li>
+                        <li><a href="https://cat333t.github.io/visor" rel="noreferrer" target='_blank'>Website</a></li>
                     </ul>
                 </div>
 
                 <div className="App-footer-info-section">
                     <h4>Legal</h4>
                     <ul>
-                        <li><a href="/terms">Terms of Service</a></li>
-                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><Link to="/terms">Terms of Service</Link></li>
+                        <li><Link to="/privacy">Privacy Policy</Link></li>
                     </ul>
                 </div>
             </div>

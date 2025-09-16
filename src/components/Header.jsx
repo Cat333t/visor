@@ -1,13 +1,18 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
 import '../styles/Header.css';
 
 export default function Header() {
     return (
         <header className="App-header">
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/dashboard">Dashboard</a></li>
-                <li><a href="/docs">Docs</a></li>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/dashboard">Dashboard</Link></li>
+                <li><Link to="/docs">Docs</Link></li>
+                <li><Link to="/auth/login">Login</Link></li>
             </ul>
         </header>
     );
 }
+
