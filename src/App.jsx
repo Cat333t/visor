@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
@@ -16,7 +16,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <Router basename="/visor">
+            <BrowserRouter basename="/visor">
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/dashboard" element={<Dashboard />} />
@@ -24,7 +24,7 @@ class App extends React.Component {
                     <Route path="/auth/login" element={<Login />} />
                     <Route path="*" element={<div>404 - Page not found</div>} />
                 </Routes>
-            </Router>
+            </BrowserRouter>
         );
     }
 }

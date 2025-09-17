@@ -13,7 +13,7 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -43,8 +43,16 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
+      - name: Create 404.html for React Router
+        run: cp build/index.html build/404.html
+
+      - name: Verify build output
+        run: |
+          echo "Build directory contents:"
+          ls -la build/
+          echo "Checking for essential files:"
+          [ -f build/index.html ] && echo "✓ index.html exists" || echo "✗ index.html missing"
+          [ -f build/404.html ] && echo "✓ 404.html exists" || echo "✗ 404.html missing"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
