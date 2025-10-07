@@ -5,6 +5,9 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Rubik', sans-serif;
+
+    scrollbar-width: auto;
+    scrollbar-color: #c3b59b #f9f9f9;
 }
 
 *::selection {

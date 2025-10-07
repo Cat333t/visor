@@ -1,7 +1,7 @@
 .App-home {
     background-image: url('../assets/background.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: top;
     width: 100%;
     min-height: 100dvh;
 }
@@ -18,10 +18,12 @@ main {
 main h1 {
     font-size: 4rem;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 main p {
     font-size: 1.5rem;
+    text-wrap: balance;
 }
 
 main #visor {

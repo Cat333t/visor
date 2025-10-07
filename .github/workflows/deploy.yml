@@ -42,6 +42,10 @@ jobs:
 
       - name: Build project
         run: npm run build
+        env:
+          AUTH0_DOMAIN=visor.eu.auth0.com
+          AUTH0_CLIENT_ID=GBNdD67l9xlmhBQrHedArr422Cjt6r0d
+
 
       - name: Create 404.html for React Router
         run: cp build/index.html build/404.html

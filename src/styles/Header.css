@@ -20,7 +20,7 @@
     list-style: none;
 }
 
-.App-header a {
+.App-header .link {
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -34,9 +34,14 @@
     font-weight: 600;
     transition: .5s;
     z-index: 1;
+    cursor: pointer;
+    background: none;
+    border: none;
+    line-height: 1.5;
+    user-select: all;
 }
 
-.App-header a:before {
+.App-header .link:before {
     content: '';
     position: absolute;
     top: -2px;
@@ -50,12 +55,16 @@
     transition: .3s;
 }
 
-.App-header a:hover {
-    transform: scale(1.05);
+.App-header:has(.link:hover) .link:not(:hover) {
+    transform: scale(0.9);
+}
+
+.App-header .link:hover {
+    transform: scale(1.1);
     color: #000; /* darker */
 }
 
-.App-header a:hover:before {
+.App-header .link:hover:before {
     transform: scaleY(0.8);
     opacity: 1;
 }

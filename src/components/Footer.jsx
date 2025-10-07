@@ -43,7 +43,7 @@ export default function Footer() {
             </div>
 
             <div className="App-footer-copyright">
-                <p> 2025 Visor. All rights reserved.</p>
+                <p>© 2025 Visor. All rights reserved.</p>
 
                 <div className="App-footer-copyright-icons">
                     <a href="https://github.com/cat333t/visor">
