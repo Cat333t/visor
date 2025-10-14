@@ -13,10 +13,10 @@
   "license": "MIT",
   "author": "",
   "type": "commonjs",
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
-    "build": "cd client && npm install && npm run build",
+    "build": "cd client && npm install && npm run build && cd ..",
     "server": "nodemon server/index.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run client\" \"npm run server\""

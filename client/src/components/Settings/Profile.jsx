@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 import { useAuth } from "../../context/Auth"
+import { useLoading } from "../../context/Loading"
 
 export default function Profile() {
-    const { isAuthenticated, user, sign_out } = useAuth();
+    const { isAuthenticated, user, sign_out, updateProfile } = useAuth();
+    const { startLoading, stopLoading } = useLoading();
+    const formRef = useRef(null);
 
     const handleUpdate = (e) => {
         e.preventDefault();
 
-        // TODO
-    }
+        startLoading();
+        updateProfile(formRef.current).then(() => {
+            stopLoading();
+        });
+    };
 
     return (
         <>
