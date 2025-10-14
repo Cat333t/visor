@@ -1,5 +1,5 @@
 .App-footer{
-    background-color: #c3b59b;
+    background-color: var(--primary-color);
     padding: 20px;
     color: white;
 }
@@ -18,12 +18,14 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: flex-start;
     max-width: 500px;
     padding: 10px 20px;
 }
 
 .App-footer-info-section h4{
-    font-size: 1.3rem;
+    text-transform: uppercase;
+    font-size: 1.2rem;
 }
 
 .App-footer-info-section h3{
@@ -62,8 +64,22 @@
     display: flex;
     gap: 15px;
 }
+.App-footer-copyright-icons a:hover svg {
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 10px #f5f5f5); /*  */
+    transform: rotateY(180deg);
+    transform-origin: center;
+    animation: rotate 0.3s ease forwards;
+}
 
-.App-footer-copyright-icons a svg:hover {
-    transition: transform 0.7s ease;
-    transform: rotateY(360deg);
+@keyframes rotate {
+    0% {
+        transform: rotateY(0deg);
+    }
+    50%{
+        transform: rotateY(90deg);
+    }
+    100% {
+        transform: rotateY(0deg);
+    }
 }

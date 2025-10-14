@@ -8,7 +8,7 @@ import '../styles/Home.css';
 export default function Home() {
     return (
         <div className="App-home">
-            <link rel="preload" as="image" href="../assets/background.jpg`" />
+            <link rel="preload" as="image" href="../assets/background.jpg" />
             <Header />
             <main>
                 <h1>Welcome to <span id="visor">Visor</span>!</h1>
@@ -18,3 +18,4 @@ export default function Home() {
         </div>
     );
 }
+

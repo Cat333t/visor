@@ -1,0 +1,24 @@
+.App-not-found main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+
+    background-image: url('../assets/background.jpg');
+    background-size: cover;
+    background-position: top;
+    width: 100%;
+    min-height: 100dvh;
+}
+
+.App-not-found h2 {
+    font-size: 2rem;
+}
+
+.App-not-found p {
+    display: block;
+    max-width: 70%;
+    font-size: 1.2rem;
+    text-wrap: balance;
+}

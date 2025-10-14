@@ -7,8 +7,10 @@ export default function Docs() {
     return (
         <div>
             <Header />
-            <h1>Documentation</h1>
-            <p>This is the documentation page.</p>
+            <main>
+                <h1>Documentation</h1>
+                <p><i className="fa fa-spinner fa-spin"></i> It is a work in progress. Check back later.</p>
+            </main>
             <Footer />
         </div>
     );
