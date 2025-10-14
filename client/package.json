@@ -17,15 +17,12 @@
     "axios": "^1.11.0",
     "ldrs": "^1.1.7",
     "prop-types": "^15.8.1",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "react-router-dom": "^7.8.2",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.9.4",
     "react-scripts": "^5.0.1",
     "react-toastify": "^11.0.5",
-    "web-vitals": "^2.1.4",
-    "eslint": "^8.57.1",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^5.2.0"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "BROWSER=none react-scripts start",
@@ -46,7 +43,9 @@
     "parserOptions": {
       "ecmaVersion": 2020,
       "sourceType": "module",
-      "ecmaFeatures": { "jsx": true }
+      "ecmaFeatures": {
+        "jsx": true
+      }
     },
     "env": {
       "browser": true,
@@ -54,7 +53,9 @@
       "node": true
     },
     "settings": {
-      "react": { "version": "detect" }
+      "react": {
+        "version": "detect"
+      }
     },
     "rules": {
       "react/react-in-jsx-scope": "off"
@@ -73,6 +74,9 @@
     ]
   },
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "concurrently": "^9.2.1",
+    "eslint": "^8.57.1",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0"
   }
 }
