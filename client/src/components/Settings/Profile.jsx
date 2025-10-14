@@ -11,13 +11,8 @@ export default function Profile() {
     const { startLoading, stopLoading } = useLoading();
     const formRef = useRef(null);
 
-    const handleUpdate = (e) => {
+    const handleUpdate = (e) => { // TODO
         e.preventDefault();
-
-        startLoading();
-        updateProfile(formRef.current).then(() => {
-            stopLoading();
-        });
     };
 
     return (
