@@ -1,5 +1,5 @@
 .App-footer{
-    background-color: #c3b59b;
+    background-color: var(--primary-color);
     padding: 20px;
     color: white;
 }
@@ -24,7 +24,8 @@
 }
 
 .App-footer-info-section h4{
-    font-size: 1.3rem;
+    text-transform: uppercase;
+    font-size: 1.2rem;
 }
 
 .App-footer-info-section h3{

@@ -1,8 +1,11 @@
 {
   "name": "visor",
-  "homepage": "https://cat333t.github.io/visor",
   "version": "0.1.0",
-  "private": true,
+  "description": "A lightweight website analytics tool built with React, Node.js, Express, and MongoDB. This tool is a more simple alternative to Google Analytics and other similar products.",
+  "homepage": "https://github.com/Cat333t/visor#readme",
+  "bugs": {
+    "url": "https://github.com/Cat333t/visor/issues"
+  },
   "dependencies": {
     "@auth0/auth0-react": "^2.5.0",
     "@fortawesome/fontawesome-svg-core": "^7.0.1",
@@ -22,33 +25,20 @@
     "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cat333t/visor.git"
+  },
+  "license": "MIT",
+  "author": "",
+  "type": "commonjs",
+  "main": "src/index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "lint": "eslint src/**/*.{js,jsx}",
-    "lint:fix": "eslint src/**/*.{js,jsx} --fix"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "start": "node src/index.js",
+    "build": "cd client && npm run build && cd ..",
+    "server": "nodemon src/index.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run client\" \"npm run server\""
   },
   "devDependencies": {
     "concurrently": "^9.2.1",
