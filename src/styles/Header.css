@@ -1,0 +1,70 @@
+.App-header {
+    width: 100%;
+    position: absolute;
+    display: flex;  
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.App-header ul {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.App-header li {
+    list-style: none;
+}
+
+.App-header .link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    margin: 20px 0;
+    padding: 0px 15px;
+    text-decoration: none;
+    color: #333; /* dark */
+    font-size: 22px;
+    font-weight: 600;
+    transition: .5s;
+    z-index: 1;
+    cursor: pointer;
+    background: none;
+    border: none;
+    line-height: 1.5;
+    user-select: all;
+}
+
+.App-header .link:before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-top: 3px solid whitesmoke;
+    border-bottom: 3px solid whitesmoke;
+    transform: scaleY(2);
+    opacity: 0;
+    transition: .3s;
+}
+
+.App-header:has(.link:hover) .link:not(:hover) {
+    transform: scale(0.9);
+}
+
+.App-header .link:hover {
+    transform: scale(1.1);
+    color: #000; /* darker */
+}
+
+.App-header .link:hover:before {
+    transform: scaleY(0.8);
+    opacity: 1;
+}
