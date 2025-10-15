@@ -62,7 +62,7 @@ app.get('/signin', (req, res) => {
 
 if (process.env.NODE_ENV === 'production') {
     const buildPath = path.join(__dirname, '../client/build');
-    if (fs.existsSync(path.join(buildPath, 'index.html'))) {
+    if (fs.constants.existsSync(path.join(buildPath, 'index.html'))) {
         app.use(express.static(buildPath)); 
     } else {
         console.error('Production build not found');
