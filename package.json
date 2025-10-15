@@ -16,7 +16,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "build": "cd client && npm install && npm run build && cd ..",
+    "build": "cd client && npm run build && cd ..",
     "server": "nodemon src/index.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run client\" \"npm run server\""

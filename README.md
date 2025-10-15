@@ -1,10 +1,12 @@
 # Visor 🌐
 
-A lightweight website analytics tool built with React, Node.js, Express, and MongoDB. This tool is a more simple alternative to Google Analytics and other similar products.
+This project is deployed on Vercel. You can find the deployment link [here](https://visor-app.vercel.app).
 
-This repository contains the **frontend (React-based dashboard)** for the [Visor](https://cat333t.github.io/visor) project — a lightweight website analytics tool.
+---
 
-👉 For the **backend (Node.js + Express + MongoDB)**, see the [Visor Server repository](https://github.com/cat333t/visor-server).
+## 📝 Description
+
+Visor is a free and open source website analytics tool that allows you to track the traffic of your website. It is a simple and easy to use tool that allows you to track the traffic of your website. It is a more simple alternative to Google Analytics and other similar products.
 
 ---
 
@@ -17,43 +19,66 @@ This repository contains the **frontend (React-based dashboard)** for the [Visor
 
 ---
 
-## 🏗️ Architecture
-The project consists of two parts:
-1. [**Frontend (React)**](https://github.com/cat333t/visor) - a dashboard for viewing statistics about website traffic (Current repository).
-2. [**Backend (Node.js + Express + MongoDB)**](https://github.com/cat333t/visor-server) - a server for receiving and storing data.
-
----
-
 ## 🤖 Technologies
 - React
-- Recharts (data visualization)
-- Fetch API
-- GitHub Pages (deployment)
+- Node.js
+- Express
+- Axios
+- Auth0
 
 ---
 
-## Installation 🛠️
+## 📦 Dependencies
 
-Clone the repository:
-```bash
-git clone https://github.com/cat333t/visor.git
+| Package | Version |
+| --- | --- |
+| node | ^24.4.0 |
+| npm | ^11.5.2 |
+| react | ^19.2.0 |
+| react-dom | ^19.2.0 |
+| react-router-dom | ^7.9.4 |
+| express | ^5.1.0 |
+| axios | ^1.12.2 |
+
+Other dependencies can be found in the [package.json](package.json) file and in the client's [package.json](client/package.json).
+
+--- 
+
+## 🚀 Installation
+
+### Clone the repository: 
+``` bash
+git clone https://github.com/Cat333t/visor.git
 cd visor
 ```
 
-Install dependencies:
-```bash
+### Install dependencies:
+``` bash
 npm install
+npm run install --prefix client 
 ```
 
-Start the development server:
-```bash
-npm start
+### Start the server:
+
+Run both(server and client):
+``` bash
+npm run dev
 ```
 
-👉 Server will start on [http://localhost:3000](http://localhost:3000) 🌐
+Run the server:
+``` bash
+npm run server
+```
 
-Build the production version:
-```bash
+Start the client:
+``` bash
+npm run client
+```
+
+And then open [http://localhost:4000](http://localhost:4000) in your browser.
+
+### Build the client:
+``` bash
 npm run build
 ```
 
@@ -61,7 +86,7 @@ npm run build
 
 ## 📝 TODO
 
-- [ ] Add authentication
+- [x] Add authentication
 - [ ] Add dashboard for statistics
 - [ ] Add script tag to track events
 - [ ] Connect to database
