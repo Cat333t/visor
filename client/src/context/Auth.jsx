@@ -27,9 +27,7 @@ export function AuthProvider({ children }) {
                 // If the status code is 400-499, an error occurs and the error message is shown
                 // If the status code is 500-599, an error occurs and the error message is shown
                 const response = await axios.get(
-                    process.env.NODE_ENV === 'production'
-                        ? '/api/auth/profile'
-                        : 'http://localhost:4000/api/auth/profile',
+                    '/api/auth/profile',
                     {
                         withCredentials: true,
                         validateStatus: (status) => (status >= 200 && status < 300) || status === 401
@@ -62,16 +60,12 @@ export function AuthProvider({ children }) {
     */
     const sign_in = () => {
         if (!isAuthenticated) {
-            window.location.href = process.env.NODE_ENV === 'production'
-                ? `/signin`
-                : 'http://localhost:4000/signin';
+            window.location.href = '/signin';
         }
     }
 
     const sign_out = () => {
-        window.location.href = process.env.NODE_ENV === 'production'
-            ? `/sign_out`
-            : 'http://localhost:4000/sign_out';
+        window.location.href = '/sign_out';
     }
 
 
@@ -85,9 +79,7 @@ export function AuthProvider({ children }) {
         try {
             return new Promise((resolve, reject) => {
                 axios.post(
-                    process.env.NODE_ENV === 'production'
-                        ? '/api/auth/profile'
-                        : 'http://localhost:4000/api/update-profile',
+                    process.env.NODE_ENV === 'api/update-profile',
                     data,
                     {
                         headers: { 'Content-Type': 'application/json' },
