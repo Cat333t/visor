@@ -1,9 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const morgan = require('morgan');
 const helmet = require('helmet');
 const path = require('path');
+const fs = require('fs');
 const { auth } = require('express-openid-connect');
 require('dotenv').config({ path: '.env' });
 
@@ -26,11 +26,29 @@ const config = {
 
 // Middleware
 app.use(auth(config));
-app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com"],
+      imgSrc: ["'self'", "data:", "https:", "blob:"],
+      connectSrc: ["'self'", config.issuerBaseURL],
+    },
+  })
+);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://visor-app.vercel.app'],
+    origin: [
+        'http://localhost:3000',
+        'http://localhost:4000',
+        'https://visor-app.vercel.app',
+        ...(process.env.ALLOWED_ORIGINS
+            ? process.env.ALLOWED_ORIGINS.split(',').filter(o => o !== '')
+            : [])
+    ],
     methods: ['GET', 'POST'],
     credentials: true
 }));
@@ -42,10 +60,19 @@ app.get('/signin', (req, res) => {
     res.oidc.login({ returnTo: '/' });
 });
 
-app.use((req, res, next) => {
+if (process.env.NODE_ENV === 'production') {
+    const buildPath = path.join(__dirname, '../client/build');
+    if (fs.existsSync(path.join(buildPath, 'index.html'))) {
+        app.use(express.static(buildPath)); 
+    } else {
+        console.error('Production build not found');
+    }
+}
+
+app.use((req, res) => {
     if (process.env.NODE_ENV === 'production') {
-        express.static(path.join(__dirname, '../client/build'))
-        res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+        const indexPath = path.join(__dirname, '../client/build/index.html');
+        res.sendFile(indexPath);
     } else {
         res.redirect('http://localhost:3000' + req.url);
     }
