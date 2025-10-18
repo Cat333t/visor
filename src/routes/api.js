@@ -100,7 +100,6 @@ router.post('/update-profile', async (req, res) => {
     if (!req.oidc.isAuthenticated()) return res.status(401).json({ success: false });
 
     try {
-        // Получаем токен для Management API
         const tokenResp = await fetch(`${process.env.AUTH0_ISSUER_BASE_URL}/oauth/token`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -114,7 +113,6 @@ router.post('/update-profile', async (req, res) => {
 
         const { access_token } = await tokenResp.json();
 
-        // Обновление профиля
         const updateResp = await fetch(`${process.env.AUTH0_ISSUER_BASE_URL}/api/v2/users/${req.oidc.user.sub}`, {
             method: 'PATCH',
             headers: { 

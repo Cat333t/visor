@@ -20,7 +20,6 @@ export default function Settings() {
     const navigate = useNavigate();
     const listRef = useRef(null);
     const [indicatorPos, setIndicatorPos] = useState({ y: -100, height: 0 });
-    const [isMoving, setIsMoving] = useState(false);
 
     useEffect(() => {
         if (isAuthenticated === false) {
@@ -30,21 +29,17 @@ export default function Settings() {
         }
     }, [isAuthenticated, navigate, id]);
 
-    // при изменении вкладки — двигай индикатор
     useEffect(() => {
         if (listRef.current) {
             const active = listRef.current.querySelector('.active');
             if (active) {
                 const rect = active.getBoundingClientRect();
                 const parentRect = listRef.current.getBoundingClientRect();
-                setIsMoving(true);
                 setIndicatorPos({
                     y: rect.top - parentRect.top + rect.height / 4,
                     height: rect.height / 2,
                 });
-
-                const timeout = setTimeout(() => setIsMoving(false), 200);
-                return () => clearTimeout(timeout);
+                return;
             }
         }
     }, [id]);
@@ -57,7 +52,7 @@ export default function Settings() {
                     <div className="settings-profile">
                         {isAuthenticated !== null ? (
                             <>
-                                <img src={user.picture} alt="" />
+                                <img src={user.picture} alt="" referrerPolicy="no-referrer" />
                                 <div className="settings-profile-info">
                                     <h2>{user.username || user.nickname || user.name}</h2>
                                     <p>{user.email}</p>
@@ -73,7 +68,7 @@ export default function Settings() {
                     <div className="settings-list-container">
                         <ul className="settings-list" ref={listRef}>
                             <div
-                                className={`active-indicator ${isMoving ? 'moving' : ''}`}
+                                className={`active-indicator`}
                                 style={{
                                     transform: `translateY(${indicatorPos.y}px)`,
                                     height: `${indicatorPos.height}px`,

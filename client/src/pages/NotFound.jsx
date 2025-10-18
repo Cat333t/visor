@@ -18,7 +18,6 @@ export default function NotFound() {
                     If you can&apos;t, please, contact the{' '}
                     <a href="mailto:cat333tr@gmail.com">developer</a>.
                 </p>
-
             </main>
             <Footer />
         </div>

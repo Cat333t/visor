@@ -16,7 +16,11 @@ export default function LoginButton(args) {
                 onClick={() => {
                     startLoading();
 
-                    sign_in();
+                    if (isAuthenticated === false) {
+                        sign_in();
+                    } else {
+                        window.location.href = '/signout';
+                    }
                 }}
             >
                 {isAuthenticated === null ? <FontAwesomeIcon icon={faSpinner} spin /> : isAuthenticated ? 'Sign Out' : 'Sign In'}

@@ -96,6 +96,7 @@
 }
 
 .App-header .profile {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -114,6 +115,8 @@
     opacity: 0;
     position: absolute;
     top: 50%;
+    right: 0;
+    transform: translateY(-50%);
     font-size: 1rem;
     font-weight: 300;
     transition: .3s;
@@ -121,7 +124,7 @@
 
 .App-header .profile:hover .profile-name {
     opacity: 1;
-    top: 90%;
+    right: 150%;
 }
 
 .App-header.fill .profile:hover .profile-name {
@@ -129,5 +132,5 @@
 }
 
 .App-header .profile:hover .profile-picture {
-    transform: scale(1.2);
+    transform: scale(1.3);
 }

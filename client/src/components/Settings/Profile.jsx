@@ -43,7 +43,7 @@ export default function Profile() {
                         ) : (
                             isAuthenticated && (
                                 <>
-                                    <img src={user.picture} />
+                                    <img src={user.picture} referrerPolicy="no-referrer" />
                                     <button><FontAwesomeIcon icon={faPencil} /> Edit</button>
                                 </>
                             )

@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /api
 
-Sitemap: https://cat333t.github.io/visor/sitemap.xml
+Sitemap: https://visor-app.vercel.app/sitemap.xml

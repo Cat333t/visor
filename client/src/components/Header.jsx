@@ -24,7 +24,7 @@ export default function Header(args) {
 
                 {isAuthenticated && user &&
                     <div className="profile" onClick={handleSettings} title="View Profile">
-                        <img className="profile-picture" src={user.picture} width={50} height={50} />
+                        <img className="profile-picture" src={user.picture} width={50} height={50} referrerPolicy="no-referrer" />
                         <span className="profile-name">{user.username || user.nickname || user.name}</span>
                     </div>
                 || 
