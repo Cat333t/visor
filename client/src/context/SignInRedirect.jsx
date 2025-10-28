@@ -12,7 +12,7 @@ function SignInRedirect() {
         if (process.env.NODE_ENV !== "production") {
             hideMessage();
             startLoading(showMessage);
-            window.location.href = "http://localhost:4000/signin";
+            window.location.href = "http://localhost:4000/login";
         }
     }, [startLoading, hideMessage, showMessage]);
 

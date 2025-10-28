@@ -51,21 +51,21 @@ export function AuthProvider({ children }) {
             }
         }
         fetchUser();
-    }, [showError]);
+    }, [showError, setIsAuthenticated, setUser]);
 
     /**
      * Sign in the user
      * @returns {void} - This function does not return anything
      * @description This function signs in the user by redirecting to the login page
     */
-    const sign_in = () => {
+    const login = () => {
         if (!isAuthenticated) {
-            window.location.href = '/signin';
+            window.location.href = '/login';
         }
     }
 
-    const sign_out = () => {
-        window.location.href = '/sign_out';
+    const logout = () => {
+        window.location.href = '/logout';
     }
 
 
@@ -113,7 +113,7 @@ export function AuthProvider({ children }) {
     }
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, user, sign_in, sign_out, updateProfile }}>
+        <AuthContext.Provider value={{ isAuthenticated, user, login, logout, updateProfile }}>
             {children}
         </AuthContext.Provider>
     );

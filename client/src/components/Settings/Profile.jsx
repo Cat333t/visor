@@ -7,7 +7,7 @@ import { useAuth } from "../../context/Auth"
 import { useLoading } from "../../context/Loading"
 
 export default function Profile() {
-    const { isAuthenticated, user, sign_out, updateProfile } = useAuth();
+    const { isAuthenticated, user, logout, updateProfile } = useAuth();
     const { startLoading, stopLoading } = useLoading();
     const formRef = useRef(null);
 
@@ -54,7 +54,7 @@ export default function Profile() {
                 </form>
             </div>
 
-            <button type="button" onClick={sign_out}>Sign Out</button>
+            <button type="button" onClick={logout}>Sign Out</button>
         </>
     );
 }

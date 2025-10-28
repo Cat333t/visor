@@ -49,15 +49,19 @@ app.use(cors({
             ? process.env.ALLOWED_ORIGINS.split(',').filter(o => o !== '')
             : [])
     ],
-    methods: ['GET', 'POST'],
+    methods: ['GET', 'POST', 'HEAD'],
     credentials: true
 }));
 
 // Routes
 app.use('/api', routes);
 
-app.get('/signin', (req, res) => {
+app.get('/login', (req, res) => {
     res.oidc.login({ returnTo: '/' });
+});
+
+app.get('/signout', (req, res) => {
+    res.oidc.logout({ returnTo: '/' });
 });
 
 if (process.env.NODE_ENV === 'production') {

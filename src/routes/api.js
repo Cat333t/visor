@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-router.post('/auth/signin', (req, res) => {
+router.post('/auth/login', (req, res) => {
     // Redirect to Auth0 login
     res.oidc.login({ returnTo: '/' });
 });
@@ -81,8 +81,14 @@ router.get('/auth/profile', async (req, res) => {
         const tokenData = await tokenResp.json();
         const mgmtToken = tokenData.access_token;
 
+        if (!mgmtToken) {
+            console.error("Failed to obtain Management API token:", tokenData);
+            return res.status(500).json({ success: false, message: "Auth0 Management token error" });
+        }
+
+
         const userResp = await fetch(`${process.env.AUTH0_ISSUER_BASE_URL}/api/v2/users/${encodeURIComponent(userId)}`, {
-        headers: { Authorization: `Bearer ${mgmtToken}` }
+            headers: { Authorization: `Bearer ${mgmtToken}` }
         });
 
         if (!userResp.ok) throw new Error('Failed to fetch user profile: ' + (await userResp.text()));

@@ -7,7 +7,7 @@ import { useAuth } from "../context/Auth";
 
 export default function LoginButton(args) {
     const { startLoading } = useLoading();
-    const { isAuthenticated, sign_in } = useAuth();
+    const { isAuthenticated, login } = useAuth();
 
     return (
         <div>
@@ -17,7 +17,7 @@ export default function LoginButton(args) {
                     startLoading();
 
                     if (isAuthenticated === false) {
-                        sign_in();
+                        login();
                     } else {
                         window.location.href = '/signout';
                     }

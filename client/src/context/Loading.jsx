@@ -7,44 +7,67 @@ const LoadingContext = createContext();
 
 export function LoadingProvider({ children }) {
     const [loading, setLoading] = useState(false);
-    const callbacksRef = useRef([]);
+    const callbacksRef = useRef([]); // [ { callback: () => {}, required: [] } ]
     const [color, setColor] = useState(`#${Math.floor(Math.random()*16777215).toString(16).padEnd(6, '0')}`);
     
     useEffect(() => {
-        const interval = setInterval(() => {
-            const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16).padEnd(6, '0');
-            setColor(randomColor);
-        }, 1000);
+        if (loading) {
+            const interval = setInterval(() => {
+                const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16).padEnd(6, '0');
+                setColor(randomColor);
+            }, 1000);
 
-        return () => clearInterval(interval);
-    }, []);
-
-    const startLoading = (afterFinish = () => {}) => { // TODO: when loading is done, run afterFinish
-        setLoading(true);
-        if (typeof afterFinish === "function") {
-            callbacksRef.current.push(afterFinish);   
+            return () => clearInterval(interval);
         }
-    }
+    }, [loading]);
+
+    const startLoading = (afterFinish = () => {}, required = []) => {
+        if (!loading) return setLoading(true)
+
+        if (afterFinish && typeof afterFinish === "function") {
+            callbacksRef.current.push({
+                callback: afterFinish,
+                required
+            });
+        }
+    };
 
     const stopLoading = () => setLoading(false);
 
     useEffect(() => {
-        if (loading === false && callbacksRef.current.length > 0) {
-        const callbacks = [...callbacksRef.current];
-        callbacksRef.current.length = 0;
+        if (!loading && callbacksRef.current.length > 0) {
+            Promise.resolve().then(async () => {
+                const remaining = [];
 
-        (async () => {
-            for (const cb of callbacks) {
-            try {
-                await Promise.resolve().then(() => cb());
-            } catch (err) {
-                console.error("afterFinish callback error:", err);
-            }
-            }
-        })();
+                for (const item of callbacksRef.current) {
+                    const { callback, required } = item;
+
+                    const ready = required.every(r => {
+                        if (r?.current !== undefined) return r.current != null; // react ref
+                        if (typeof r === "object") return r !== null; // object
+                        if (typeof r === "string") return r !== ""; // string
+                        if (typeof r === "number") return r !== 0; // number
+                        if (typeof r === "boolean") return r; // boolean
+                        if (Array.isArray(r)) return r.length > 0; // array
+                        if (typeof r === "function") return r() === true; // function
+                        return Boolean(r);
+                    });
+
+                    if (ready) {
+                        try {
+                            await callback(); // сначало это виполняеться а потом почему-то пропадает loading
+                        } catch (err) {
+                            console.error("AfterFinish callback error while loading:", err);
+                        }
+                    } else {
+                        remaining.push(item);
+                    }
+                }
+
+                callbacksRef.current = remaining;
+            });
         }
     }, [loading]);
-
 
     return (
         <LoadingContext.Provider value={{ startLoading, stopLoading, loading, setLoading }}>

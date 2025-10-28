@@ -9,20 +9,23 @@
       name="description"
       content="A lightweight website analytics tool."
     />
-    <!-- <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
 
-    <!-- <script async src="http://localhost:3000/visor/analytics.js"></script>
+    <script src="%PUBLIC_URL%/analytics.js"></script>
     <script>
-      Visor.init("token") 
-    </script> Пример инициализации Visor --- IGNORE --- -->
+      window.Visor = window.Visor || {}
+      // window.Visor.init("QWERTY")
+      function track(event, data) {
+        window.Visor.track(event, data)
+      }
+      track("config", window.Visor.config)
+    </script>
 
     <title>Visor</title>
-    <!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
     <meta property="og:title" content="Visor - A lightweight website analytics tool" />
     <meta property="og:description" content="A lightweight website analytics tool." />
-    <meta property="og:image" content="%PUBLIC_URL%/assets/preview.png" />
+    <meta property="og:image" content="%PUBLIC_URL%/assets/background.jpg" />
     <meta property="og:url" content="https://visor-app.vercel.app" />
     <meta property="og:site_name" content="Visor">
     <meta name="keywords" content="website analytics, lightweight, free, open source, visor, visor app, Visor, Google Analytics alternative" />

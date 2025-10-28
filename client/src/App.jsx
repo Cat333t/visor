@@ -8,7 +8,7 @@ import Dashboard from './pages/Dashboard';
 import Docs from './pages/Docs';
 import Settings from './pages/Settings';
 import NotFound from './pages/NotFound';
-import SignInRedirect from './context/SignInRedirect';
+// import SignInRedirect from './context/SignInRedirect';
 
 function App() {
     return (
@@ -18,7 +18,7 @@ function App() {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/docs" element={<Docs />} />
                 <Route path="/settings/:id?" element={<Settings />} />
-                <Route path="/signin" element={<SignInRedirect />} />
+                {/* <Route path="/login" element={<SignInRedirect />} /> */}
                 <Route path="*" element={<NotFound />} />
             </Routes>
 

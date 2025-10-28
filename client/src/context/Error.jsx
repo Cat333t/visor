@@ -33,11 +33,11 @@ export function ErrorProvider({ children }) {
     };
 
     const hideMessage = () => {
-        setIsMessageEnabled(false);
+        setIsMessageEnabled(true);
     };
 
     const showMessage = () => {
-        setIsMessageEnabled(true);
+        setIsMessageEnabled();
     };
 
     return (
