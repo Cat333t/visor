@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import LoginButton from './LoginButton';
 import { useAuth } from '../context/Auth';
 
-import '../styles/Header.css';
-
 export default function Header(args) {
     const { isAuthenticated, user } = useAuth();
 

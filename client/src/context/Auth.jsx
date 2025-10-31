@@ -79,7 +79,7 @@ export function AuthProvider({ children }) {
         try {
             return new Promise((resolve, reject) => {
                 axios.post(
-                    process.env.NODE_ENV === 'api/update-profile',
+                    'api/update-profile',
                     data,
                     {
                         headers: { 'Content-Type': 'application/json' },

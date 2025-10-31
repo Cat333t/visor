@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta
+      name="description"
+      content="A lightweight website analytics tool."
+    />
+
+    <script src="/analytics.js"></script>
+    <script>
+      window.Visor = window.Visor || {}
+      // window.Visor.init("QWERTY")
+      function track(event, data) {
+        window.Visor.track(event, data)
+      }
+      track("config", window.Visor.config)
+    </script>
+
+    <title>Visor</title>
+    <link rel="manifest" href="/manifest.json" />
+
+    <meta property="og:title" content="Visor - A lightweight website analytics tool" />
+    <meta property="og:description" content="A lightweight website analytics tool." />
+    <meta property="og:image" content="/assets/background.webp" />
+    <meta property="og:url" content="https://visor-app.vercel.app" />
+    <meta property="og:site_name" content="Visor">
+    <meta name="keywords" content="website analytics, lightweight, free, open source, visor, visor app, Visor, Google Analytics alternative" />
+
+    <!--preload-css-->
+
+    <!-- main js -->
+    <link rel="preload" as="script" href="/src/main.jsx">
+  </head>
+  <body>
+    <noscript>
+      <div class="noscript-overlay">
+        <div class="noscript-popup">
+          <input type="checkbox" id="closeNoscript">
+          <div class="noscript-content">
+            <h2>JavaScript отключён ⚠️</h2>
+            <p>
+              Please enable JavaScript in your browser settings or reload the page. If you have a script-blocking extension, consider whitelisting this site for the best experience.
+              If your problem persists, feel free to <a href="mailto:cat333tr@gmail.com">contact us</a>.
+            </p>
+
+            <i>This message will appear every time you reload the page.</i>
+          </div>
+          <label for="closeNoscript" class="close-btn">Закрыть</label>
+        </div>
+      </div>
+    </noscript>
+
+    <div id="root"><!--ssr-outlet--></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

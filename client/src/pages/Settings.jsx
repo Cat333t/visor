@@ -4,8 +4,6 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
-import '../styles/Settings.css';
-
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 

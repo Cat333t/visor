@@ -1,0 +1,78 @@
+.noscript-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.noscript-popup {
+    background: #fff;
+    border-radius: 12px;
+    max-width: 420px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    animation: slideUp 0.4s ease forwards;
+    position: relative;
+}
+
+.noscript-popup h2 {
+    color: #e63946;
+    margin-bottom: 1rem;
+}
+
+.noscript-popup p {
+    color: #333;
+    font-size: 1rem;
+}
+
+.noscript-popup input[type="checkbox"] {
+    display: none;
+}
+
+.noscript-popup label.close-btn {
+    display: inline-block;
+    margin-top: 1.5rem;
+    background: #e63946;
+    color: #fff;
+    border-radius: 8px;
+    padding: 0.5rem 1.2rem;
+    cursor: pointer;
+    font-weight: 600;
+    border: 2px solid #e63946;
+    transition: background 0.2s ease;
+}
+
+.noscript-popup label.close-btn:hover {
+    background: transparent;
+    color: #e63946;
+}
+
+.noscript-overlay:has(input[type="checkbox"]:checked),
+.noscript-popup:has(input[type="checkbox"]:checked) {
+    animation: fadeOut 0.4s ease forwards;
+    pointer-events: none;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes slideUp {
+    0% { transform: translateY(30px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}

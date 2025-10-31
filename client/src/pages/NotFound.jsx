@@ -3,8 +3,6 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import axios from 'axios';
 
-import '../styles/NotFound.css';
-
 import { useLoading } from '../context/Loading'; 
 
 export default function NotFound() {
@@ -43,7 +41,7 @@ export default function NotFound() {
         <>
             {checked && (
                 <div className="App-not-found">
-                    <link rel="preload" as="image" href="../assets/background.jpg" />
+                    <link rel="preload" as="image" href="../../public/assets/background.webp" />
                     <Header />
                     <main>
                         <h1>Error 404.</h1>

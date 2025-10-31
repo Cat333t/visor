@@ -5,7 +5,7 @@
     align-items: flex-start;
     padding: 20px;
 
-    background-image: url('../assets/background.jpg');
+    background-image: url('/assets/background.webp');
     background-size: cover;
     background-position: top;
     width: 100%;

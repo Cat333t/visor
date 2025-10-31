@@ -10,9 +10,15 @@ import Settings from './pages/Settings';
 import NotFound from './pages/NotFound';
 // import SignInRedirect from './context/SignInRedirect';
 
+import { ErrorProvider } from './context/Error';
+import { AuthProvider } from './context/Auth';
+import { LoadingProvider } from './context/Loading';
+
 function App() {
     return (
-        <>
+        <ErrorProvider>
+        <LoadingProvider>
+        <AuthProvider>
             <Routes>
                 <Route index element={<Home />} />
                 <Route path="/dashboard" element={<Dashboard />} />
@@ -27,7 +33,9 @@ function App() {
                 autoClose={5000}
                 theme="colored"
             />
-        </>
+        </AuthProvider>
+        </LoadingProvider>
+        </ErrorProvider>
     );
 }
 
