@@ -146,7 +146,7 @@ async function createServer() {
     });
 
     // Глобальный error handler
-    app.use((err, req, res, next) => {
+    app.use((err, req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     });
 

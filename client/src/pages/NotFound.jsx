@@ -28,7 +28,7 @@ export default function NotFound() {
                         stopLoading();
                     }
                 } catch (err) {
-                    console.log('Proxy (localhost:4000) unreachable');
+                    console.log("Error checking proxy:", err);
                     stopLoading();
                 }
             };
