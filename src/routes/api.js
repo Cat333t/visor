@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express';
 
 const router = express.Router();
 
@@ -145,4 +145,4 @@ router.use((req, res) => {
     res.status(404).json({ success: false, message: 'API endpoint not found' });
 })
 
-module.exports = router;
+export default router;

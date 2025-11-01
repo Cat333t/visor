@@ -1,18 +1,19 @@
-const express = require('express');
-const compression = require('compression');
-const cors = require('cors');
-const helmet = require('helmet');
-const path = require('path');
-const fs = require('fs');
-const { createServer: createViteServer } = require('vite');
-const { auth } = require('express-openid-connect');
-require('dotenv').config({ path: '.env' });
-const routes = require('./routes/api'); // Ваш API-роутер
+import express from 'express';
+import compression from 'compression';
+import cors from 'cors';
+import helmet from 'helmet';
+import path from 'path';
+import fs from 'fs';
+import { createServer as createViteServer } from 'vite';
+import { auth } from 'express-openid-connect';
+import dotenv from 'dotenv';
+dotenv.config({ path: '.env' });
+import routes from './routes/api.js';
 
 const app = express();
 const HOST = process.env.HOST || '0.0.0.0';
 const PORT = process.env.PORT || 4000;
-const dirname = path.resolve(path.dirname(require.main.filename), "..");
+const dirname = path.join(path.dirname(import.meta.url), '../').replace('file:', '');
 
 const config = {
     authRequired: false,
@@ -75,6 +76,7 @@ async function createServer() {
     });
 
     let vite;
+
     if (process.env.NODE_ENV !== 'production') {
         // Dev: Vite middleware
         vite = await createViteServer({
@@ -110,7 +112,7 @@ async function createServer() {
             let template;
             if (vite) {
                 // Dev
-                template = fs.readFileSync(path.resolve(dirname, 'client/index.html'), 'utf-8');
+                template = fs.readFileSync(path.join(dirname, 'client/index.html'), 'utf-8');
                 template = await vite.transformIndexHtml(url, template);
 
                 const { render } = await vite.ssrLoadModule('../src/entry-server.jsx');
@@ -119,7 +121,7 @@ async function createServer() {
                 let html = template.replace('<!--ssr-outlet-->', appHtml);
 
                 // Динамический preload CSS/JS (лучше, чем хардкод)
-                const styleFiles = fs.readdirSync(path.resolve(__dirname, '../public/styles')).filter(f => f.endsWith('.css'));
+                const styleFiles = fs.readdirSync(path.resolve(dirname, 'public/styles')).filter(f => f.endsWith('.css'));
 
                 for (const styleFile of styleFiles) {
                     html = html.replace("<!--preload-css-->", `<!--preload-css--> \n    <link rel="preload" as="style" href="/styles/${styleFile}">\n    <link rel="stylesheet" href="/styles/${styleFile}" />\n`);
@@ -130,7 +132,7 @@ async function createServer() {
                 // Prod
                 template = fs.readFileSync(path.resolve(dirname, 'dist/client/index.html'), 'utf-8');
 
-                const { render } = require(path.resolve(dirname, 'dist/server/entry-server.js'));
+                const { render } = await import(path.resolve(dirname, 'dist/server/entry-server.js'));
                 const appHtml = await render(url);
 
                 const html = template.replace('<!--ssr-outlet-->', appHtml);
@@ -151,15 +153,15 @@ async function createServer() {
     });
 
     // Запуск сервера
-    app.listen(PORT, HOST, () => {
-        console.clear();
+    app.listen(PORT, HOST, async () => {
+        // console.clear();
         console.log(`
                 ░█──░█ ▀█▀ ░█▀▀▀█ ░█▀▀▀█ ░█▀▀█
                 ─░█░█─ ░█─ ─▀▀▀▄▄ ░█──░█ ░█▄▄▀
                 ──▀▄▀─ ▄█▄ ░█▄▄▄█ ░█▄▄▄█ ░█─░█
             `);
         if (process.env.NODE_ENV !== 'production') {
-        const os = require('os');
+        const os = await import('os');
         const interfaces = os.networkInterfaces();
         let addresses = [];
         for (let iface in interfaces) {

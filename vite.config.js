@@ -44,7 +44,7 @@ export default defineConfig({
     rollupOptions: {
       input: '../src/entry-server.jsx',
       output: {
-        format: 'cjs',
+        format: 'module',
         entryFileNames: 'entry-server.js',
       },
     },
