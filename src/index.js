@@ -77,7 +77,7 @@ async function createServer() {
 
     let vite;
 
-    if (process.env.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV !== 'production' && process.env.VERCEL !== '1') {
         // Dev: Vite middleware
         vite = await createViteServer({
             server: { middlewareMode: true },
