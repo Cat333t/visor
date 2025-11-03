@@ -48,7 +48,7 @@
     "url": "git+https://github.com/Cat333t/visor.git"
   },
   "license": "MIT",
-  "author": "",
+  "author": "Cat333t",
   "main": "src/index.js",
   "type": "module",
   "scripts": {
@@ -64,8 +64,5 @@
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
-  },
-  "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "^4.52.5"
   }
 }
