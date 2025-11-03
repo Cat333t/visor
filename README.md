@@ -46,7 +46,7 @@ Visor is a free and open source website analytics tool that allows you to track 
 | Package | Version |
 | --- | --- |
 | node | ^24.4.0 |
-| npm | ^11.5.2 |
+| pnpm | ^10.20.0 |
 | react | ^19.2.0 |
 | react-dom | ^19.2.0 |
 | react-router-dom | ^7.9.4 |
@@ -67,32 +67,32 @@ cd visor
 
 ### Install dependencies:
 ``` bash
-npm install
-npm run install --prefix client 
+pnpm install
+pnpm run install --prefix client 
 ```
 
 ### Start the server:
 
 Run both(server and client):
 ``` bash
-npm run dev
+pnpm run dev
 ```
 
 Run the server:
 ``` bash
-npm run server
+pnpm run server
 ```
 
 Start the client:
 ``` bash
-npm run client
+pnpm run client
 ```
 
 And then open [http://localhost:4000](http://localhost:4000) in your browser.
 
 ### Build the client:
 ``` bash
-npm run build
+pnpm run build
 ```
 
 ---
