@@ -1,11 +1,13 @@
 {
   "version": 2,
   "builds": [
-    { 
-      "src": "src/index.js",
-      "use": "@vercel/node@24.4.0"
-    }
+    { "src": "src/index.js", "use": "@vercel/node"}
   ],
+  "functions": {
+    "src/index.js": {
+      "runtime": "nodejs24.x"
+    }
+  },
   "env": {
     "NODE_ENV": "production"
   },
