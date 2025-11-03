@@ -2,7 +2,7 @@
   "name": "visor",
   "version": "0.1.0",
   "description": "A lightweight website analytics tool built with React, Node.js, Express, and MongoDB. This tool is a more simple alternative to Google Analytics and other similar products.",
-  "homepage": "https://github.com/Cat333t/visor#readme",
+  "homepage": "https://visor-app.vercel.app/",
   "bugs": {
     "url": "https://github.com/Cat333t/visor/issues"
   },
