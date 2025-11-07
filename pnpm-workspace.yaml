@@ -1,0 +1,7 @@
+ignoredBuiltDependencies:
+  - browser-tabs-lock
+
+onlyBuiltDependencies:
+  - rollup
+  - esbuild
+  - vite

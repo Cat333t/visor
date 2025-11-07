@@ -1,7 +1,7 @@
 import React from 'react';
 import { hydrateRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import Main from '../client/src/Main.jsx';
+import Main from '../client/src/main.jsx';
 
 if (typeof document !== 'undefined') {
   hydrateRoot(

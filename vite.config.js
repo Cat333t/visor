@@ -53,13 +53,22 @@ export default defineConfig({
     emptyOutDir: true,
     manifest: true,
     rollupOptions: {
-      input: path.resolve(__dirname, './client/index.html'),
+      input: path.resolve(__dirname, './client/index.html')
     },
+  },
+
+  optimizeDeps: {
+    include: ['react-router-dom'],
   },
 
   server: {
     port: 3000,
     strictPort: false,
+  },
+  
+  ssr: {
+    noExternal: true,
+    outDir: './dist/server',
   },
 
   resolve: {

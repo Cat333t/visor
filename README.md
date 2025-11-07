@@ -57,6 +57,39 @@ Other dependencies can be found in the [package.json](package.json) file and in 
 
 --- 
 
+## 🏗️ Architecture
+
+The architecture of the project is as follows:
+
+```mermaid
+├── LICENSE.md
+├── README.md
+├── client
+│   ├── index.html
+│   └── src
+│       ├── App.jsx
+│       ├── components/
+│       ├── context/
+│       ├── main.jsx
+│       └── pages/
+├── dist
+│   ├── client
+│   └── server
+├── eslint.config.mjs
+├── package.json
+├── pnpm-lock.yaml
+├── public/
+├── src
+│   ├── entry-client.jsx
+│   ├── entry-server.jsx
+│   ├── index.js
+│   └── routes
+│       └── api.js
+├── vercel.json
+└── vite.config.js
+```
+---
+
 ## 🚀 Installation
 
 ### Clone the repository: 

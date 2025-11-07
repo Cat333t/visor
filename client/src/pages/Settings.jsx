@@ -12,6 +12,7 @@ import Security from '../components/Settings/Security';
 import Notifications from '../components/Settings/Notifications';
 import FeedbackAndSupport from '../components/Settings/FeedbackAndSupport';
 
+
 export default function Settings() {
     const { id } = useParams();
     const { isAuthenticated, user } = useAuth();

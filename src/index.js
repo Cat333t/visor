@@ -4,7 +4,6 @@ import cors from 'cors';
 import helmet from 'helmet';
 import path from 'path';
 import fs from 'fs';
-import { createServer as createViteServer } from 'vite';
 import { auth } from 'express-openid-connect';
 import dotenv from 'dotenv';
 dotenv.config({ path: '.env' });
@@ -24,7 +23,7 @@ const config = {
     issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL,
 };
 
-// Глобальные middleware (до createServer)
+// Middlewares
 app.use(compression({ threshold: 0 }));
 app.use(auth(config));
 
@@ -60,14 +59,14 @@ app.use(
     })
 );
 
-// Public статика (до Vite)
+// Static files
 app.use(express.static(path.resolve(dirname, 'public')));
 
 async function createServer() {
-    // API роуты (независимо от dev/prod)
+    // API routes
     app.use('/api', routes);
 
-    // Auth0 роуты
+    // Auth0 routes
     app.get('/login', (req, res) => {
         res.oidc.login({ returnTo: '/' });
     });
@@ -77,7 +76,12 @@ async function createServer() {
 
     let vite;
 
-    if (process.env.NODE_ENV !== 'production' && process.env.VERCEL !== '1') {
+    // app.use((req, res, next) => {
+    //     res.send(`Production: ${process.env.NODE_ENV}.` + ` Vercel: ${process.env.VERCEL}.`);
+    // })
+
+    if (process.env.NODE_ENV !== 'production' || process.env.VERCEL !== '1') {
+        const { createServer: createViteServer } = await import('vite');
         // Dev: Vite middleware
         vite = await createViteServer({
             server: { middlewareMode: true },
@@ -97,16 +101,16 @@ async function createServer() {
         );
     }
 
-    // SSR хэндлер (для всех путей)
+    // SSR middleware
     app.use(async (req, res, next) => {
-        if (res.headersSent) return; // Пропуск, если файл уже отдан
+        if (res.headersSent) return;
 
         const url = req.originalUrl;
 
         try {
-            // Только для HTML-запросов
             if (!req.headers.accept?.includes('text/html')) {
-                return next();
+                next();
+                return
             }
 
             let template;
@@ -120,7 +124,6 @@ async function createServer() {
 
                 let html = template.replace('<!--ssr-outlet-->', appHtml);
 
-                // Динамический preload CSS/JS (лучше, чем хардкод)
                 const styleFiles = fs.readdirSync(path.resolve(dirname, 'public/styles')).filter(f => f.endsWith('.css'));
 
                 for (const styleFile of styleFiles) {
@@ -147,42 +150,40 @@ async function createServer() {
         }
     });
 
-    // Глобальный error handler
-    app.use((err, req, res) => {
-        res.status(500).json({ error: 'Internal Server Error' });
-    });
-
-    // Запуск сервера
-    app.listen(PORT, HOST, async () => {
-        // console.clear();
-        console.log(`
-                ░█──░█ ▀█▀ ░█▀▀▀█ ░█▀▀▀█ ░█▀▀█
-                ─░█░█─ ░█─ ─▀▀▀▄▄ ░█──░█ ░█▄▄▀
-                ──▀▄▀─ ▄█▄ ░█▄▄▄█ ░█▄▄▄█ ░█─░█
-            `);
-        if (process.env.NODE_ENV !== 'production') {
-        const os = await import('os');
-        const interfaces = os.networkInterfaces();
-        let addresses = [];
-        for (let iface in interfaces) {
-            for (let alias of interfaces[iface]) {
-            if (alias.family === 'IPv4' && !alias.internal) {
-                addresses.push(alias.address);
+    if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL || process.env.VERCEL !== '1') {
+        app.listen(PORT, HOST, async () => {
+            console.clear();
+            console.log(`
+                    ░█──░█ ▀█▀ ░█▀▀▀█ ░█▀▀▀█ ░█▀▀█
+                    ─░█░█─ ░█─ ─▀▀▀▄▄ ░█──░█ ░█▄▄▀
+                    ──▀▄▀─ ▄█▄ ░█▄▄▄█ ░█▄▄▄█ ░█─░█
+                `);
+            if (process.env.NODE_ENV !== 'production') {
+            const os = await import('os');
+            const interfaces = os.networkInterfaces();
+            let addresses = [];
+            for (let iface in interfaces) {
+                for (let alias of interfaces[iface]) {
+                if (alias.family === 'IPv4' && !alias.internal) {
+                    addresses.push(alias.address);
+                }
+                }
             }
+            console.log('Server running at:');
+            addresses.forEach(address => {
+                console.log(` - http://${address}:${PORT}`);
+            });
+            console.log(` - http://localhost:${PORT}`);
+            } else {
+            console.log('Production server running!');
             }
-        }
-        console.log('Server running at:');
-        addresses.forEach(address => {
-            console.log(` - http://${address}:${PORT}`);
         });
-        console.log(` - http://localhost:${PORT}`);
-        } else {
-        console.log('Production server running!');
-        }
-    });
+    } else {
+        console.log('Production server ready!');
+    }
 
-    return app; // Для тестов
+    return app;
 }
 
-// Вызов (теперь с await, т.к. async)
-createServer().catch(console.error);
+const server = await createServer();
+export default server;
