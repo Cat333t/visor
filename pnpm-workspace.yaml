@@ -5,3 +5,7 @@ onlyBuiltDependencies:
   - rollup
   - esbuild
   - vite
+
+packages:
+  - 'client/*'
+  - 'src/*'
