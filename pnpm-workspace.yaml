@@ -1,11 +1,11 @@
-ignoredBuiltDependencies:
-  - browser-tabs-lock
-
 onlyBuiltDependencies:
-  - rollup
   - esbuild
   - vite
 
 packages:
   - 'client/*'
   - 'src/*'
+
+ignoredBuiltDependencies:
+  - rollup
+  - browser-tabs-lock
