@@ -63,7 +63,7 @@
     "start": "node src/index.js",
     "dev": "NODE_ENV=development node src/index.js",
     "test": "nodemon src/index.js",
-    "build": "pnpm run build:client && pnpm run build:server",
+    "build": "pnpm run build:client && pnpm run build:server && echo 🟢Build complete.",
     "build:client": "vite build",
     "build:server": "vite build --ssr ../src/entry-server.jsx",
     "preview": "NODE_ENV=production node src/index.js",
