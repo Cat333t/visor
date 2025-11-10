@@ -5,14 +5,14 @@
       "src": "src/index.js",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": ["*"]
+        "includeFiles": ["dist/**", "public/**", "src/**"]
       }
     }
   ],
   "env": {
     "NODE_ENV": "production"
   },
-  "installCommand": "pnpm install",
+  "installCommand": "pnpm install --frozen-lockfile=false --ignore-scripts=false",
   "buildCommand": "pnpm run build",
   "routes": [
     {
