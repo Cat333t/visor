@@ -5,6 +5,7 @@ onlyBuiltDependencies:
 packages:
   - 'client/*'
   - 'src/*'
+  - 'public/*'
 
 ignoredBuiltDependencies:
   - rollup
