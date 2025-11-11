@@ -183,8 +183,6 @@ async function createServer() {
             console.log('Production server running!');
             }
         });
-    } else {
-        console.log('Production server ready!');
     }
 
     return app;

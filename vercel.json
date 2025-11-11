@@ -1,5 +1,11 @@
 {
   "version": 2,
+  "installCommand": "pnpm install",
+  "buildCommand": "pnpm run build",
+  "outputDirectory": "dist",
+  "env": {
+    "NODE_ENV": "production"
+  },
   "builds": [
     {
       "src": "src/index.js",
@@ -9,12 +15,6 @@
       }
     }
   ],
-  "env": {
-    "NODE_ENV": "production"
-  },
-  "installCommand": "pnpm install",
-  "buildCommand": "pnpm run build",
-  "outputDirectory": "dist",
   "routes": [
     {
       "src": "/(.*)",
