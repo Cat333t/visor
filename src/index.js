@@ -133,6 +133,11 @@ async function createServer() {
                 res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
             } else {
                 // Prod
+                if (!fs.existsSync(path.resolve(dirname, 'dist/client/index.html'))) { // test if build is done
+                    console.error('Build not found. Please run the build process before starting the production server.');
+                    return res.status(500).end('Build not found. Please wait until administration completes the build process. Thank you for your patience.');
+                }
+                
                 template = fs.readFileSync(path.resolve(dirname, 'dist/client/index.html'), 'utf-8');
 
                 const { render } = await import(path.resolve(dirname, 'dist/server/entry-server.js'));
